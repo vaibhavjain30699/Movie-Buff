@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -14,15 +15,19 @@ import com.squareup.picasso.Target;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
  public class Movie_Info extends AppCompatActivity {
 
     public movie movie_data;
+
+     public Target target;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,25 +62,25 @@ import org.w3c.dom.Text;
         overview.setText(movie_data.getOverview());
 
         toolBarLayout.setTitle(movie_data.getTitle());
-        if(movie_data.getBackdrop_path()==null){
-            url =  String.format("https://image.tmdb.org/t/p/original%s",movie_data.getBackdrop_path());
-            Picasso.get().load(url).into(new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    toolBarLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(),bitmap));
-                }
+        url =  String.format("https://image.tmdb.org/t/p/original%s",movie_data.getBackdrop_path());
+//            Log.e("url",url);
+        target = new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                toolBarLayout.setBackground(new BitmapDrawable(getApplicationContext().getResources(),bitmap));
+            }
 
-                @Override
-                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+//                Toast.makeText(Movie_Info.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
 
-                }
-
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-                }
-            });
-        }
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+//                Toast.makeText(Movie_Info.this, "Failed1", Toast.LENGTH_SHORT).show();
+            }
+        };
+        Picasso.get().load(url).into(target);
 
     }
 }

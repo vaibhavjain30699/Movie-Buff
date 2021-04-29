@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             public okhttp3.Response intercept(Chain chain) throws IOException {
                 okhttp3.Response originalResponse = chain.proceed(chain.request());
                 if (isNetworkAvailable()) {
-                    int maxAge = 60; // read from cache for 1 minute
+                    int maxAge = 5; // read from cache for 5 seconds
                     return originalResponse.newBuilder()
                             .header("Cache-Control", "public, max-age=" + maxAge)
                             .build();
