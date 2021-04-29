@@ -15,7 +15,9 @@
         android:layout_height="275dp"
         android:layout_gravity="center"
         android:background="#C0C0C0"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:transitionName="poster_image"
+        />
 
     <TextView
         android:id="@+id/title"

@@ -1,9 +1,12 @@
 package com.vaibhav.moviebuff;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
+import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -56,11 +61,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         Picasso.get().load(url).into(holder.poster);
 
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(holder.itemView.getContext(),Movie_Info.class);
                 intent.putExtra("Data",movie_info);
-                holder.itemView.getContext().startActivity(intent);
+                ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) holder.itemView.getContext(),holder.poster,"poster_image");
+                holder.itemView.getContext().startActivity(intent, activityOptionsCompat.toBundle());
             }
         });
 
