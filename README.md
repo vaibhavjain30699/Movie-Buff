@@ -3,7 +3,7 @@ Movie Buff is an app that displays all the popular shows on TMDB. The data is be
 
 Highlights of the app:
 <ul>
-<li>Network Handling</li>
+<li>Shared Element Transition</li>
 <li>Caching API calls</li>
 <li>Responsive UI</li>
 </ul>
