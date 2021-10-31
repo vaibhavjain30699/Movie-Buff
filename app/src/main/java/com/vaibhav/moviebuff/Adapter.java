@@ -31,6 +31,9 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
+ List<movie> movieList;
+    String base_url_images;
+
 
     public Adapter(List<movie> movieList) {
         this.movieList = movieList;
