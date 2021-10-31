@@ -93,4 +93,3 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     }
 
 }
-/*This is how we comment in java*/
