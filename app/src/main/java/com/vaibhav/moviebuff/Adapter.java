@@ -32,9 +32,6 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
-    List<movie> movieList;
-    String base_url_images;
-
     public Adapter(List<movie> movieList) {
         this.movieList = movieList;
         base_url_images = "https://image.tmdb.org/t/p/original";
